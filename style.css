@@ -1,0 +1,1569 @@
+* {
+    margin: 0;/*tarayıcıların varsayılan iç ve dış boşluklarını sıfırladık*/
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+html {
+    font-size: 16px; /* Varsayılan boyutu sabitleyin */
+    -webkit-text-size-adjust: 100%; /* Mobil cihazlarda otomatik büyümeyi engeller */
+    /* Tüm ID linklemelerinde yumuşak kaydırma efekti sağlar */
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth; 
+}
+body {
+    max-width: 100%;
+    overflow-x: hidden;/* Sağ tarafa taşmaları ve kaymaları önler */
+    -webkit-font-smoothing: antialiased;    
+    background-color: #f9f3f3;/* Tüm sayfa arka planını beyaz yapar */
+}
+
+/* HEADER - Daha ince ve zarif bir yapı */
+header {
+    background: #f9f3f3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Elemanları dikeyde tam ortalar */
+    padding: 15px 5%; /* Dikey padding 30px'den 15px'e düşürüldü */
+    position: sticky !important;
+    z-index: 1000;
+    top: 0;
+    border-bottom: 1px solid rgba(103, 35, 76, 0.1); /* Kalın çizgiyi hafiflettik */
+}
+
+/* LOGO - Boyutu küçültüldü */
+.logo {
+    font-size: 24px; /* 32px'den 24px'e düşürüldü */
+    font-weight: 700;
+    color: #67234c;
+    text-decoration: none;
+}
+
+/* NAVIGASYON - Yazı tipleri standart web ölçüsüne çekildi */
+nav a {
+    margin-left: 15px; /* Boşluklar daraltıldı */
+    text-decoration: none;
+    color: #333;
+    font-size: 0.85rem; /* 1.5rem (24px) olan dev boyut 15px-16px seviyesine çekildi */
+    font-weight: 600;
+    display: inline-block; 
+    padding: 10px 20px; /* Buton görünümü için padding dengelendi */
+    border-radius: 5px; 
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFEKTİ - Daha yumuşak */
+nav a:hover {
+    color: #fff;
+    background-color: #67234c;
+    box-shadow: 0 4px 8px rgba(103, 35, 76, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Dropdown Genel Konumu */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+
+/* Açılır Menü Kutusu */
+.dropdown-content {
+    display: none; /* Varsayılan olarak gizli */
+    position: absolute;
+    background-color: #fff;
+    min-width: 250px; /* Genişlik kategori sayısına göre artırılabilir */
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    z-index: 1010;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    padding: 10px;
+    border-top: 3px solid #67234c; /* Sizin tema renginiz */
+}
+
+/* Hover Durumunda Göster */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* İki Sütunlu Yapı */
+.menu-columns {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Menü Linkleri */
+nav .dropdown-content a {
+    color: #333 !important; /* Header'daki beyaz yazı rengini ezmek için */
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.80rem !important;
+    text-align: left;
+    border-radius: 5px; /* Köşeleri yuvarlama (isteğe bağlı) */
+    transition: all 0.3s ease; /* Yumuşak geçiş için transition ekledik */
+    margin-left: 0; /* Nav a'daki margin'i sıfırladık */
+}
+
+
+nav .dropdown-content a:hover {
+    background-color: #67234c; /* Hafif bir hover rengi */
+    color: #ffffff !important;
+    
+}
+
+/* Yumuşak açılış animasyonu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+
+
+
+/* KAHRAMAN BÖLÜMÜ (HERO) - Yeniden Ölçeklendirme */
+/* 1. HERO ALANINI EKRANA SIFIRLA */
+
+
+.hero {
+    padding-top: 80px;
+    position: relative;
+    width:100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 50vh;    
+    /* 70vh'den biraz daha dengeli bir yüksekliğe çekildi */
+    background-size: cover;
+    background-position: center 43%; 
+    display: flex; 
+    justify-content: flex-start;    
+    align-items: center;
+    padding-left: 0; /* Kutuyu biraz daha içeri aldık */
+    text-align: left; 
+    overflow: hidden;
+  
+   
+}
+
+/* Karartma efekti */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.25); /* Resimdeki gibi daha az karartma */
+    z-index: 1; /* İçerik altta kalmasın diye */
+}
+
+/* Hoşgeldiniz Metin Kutusu - Esnek ve Dengeli */
+.hero-content {
+    margin-left: 5% !important; /* Resmi değil, sadece kutuyu içeriden başlatır */
+    position: relative;
+    z-index: 2; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 40px; /* Gereksiz büyük padding daraltıldı */
+    width: 100%;
+    max-width: 450px; /* Sabit 650px yerine daha zarif bir genişlik */
+    /*height: auto; /* Sabit 450px yüksekliği kaldırıldı, içeriğe göre şekil alır */
+    min-height: 350px; /* Kutunun çok küçülmemesi için güvenli sınır */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* İçeriği kutu içinde dikeyde ortalar */
+    border-radius: 4px;
+}
+
+/* Başlık - Font Stili Aynı, Boyut Optimize */
+.hero-content h2 {
+    font-size: 1.8rem; /* 3rem'den 2.2rem'e çekildi */
+    font-weight: 800; 
+    color: #333; 
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+/* Renkli Çizgi */
+.divider {
+    width: 50px; /* 90px'den 60px'e çekildi */
+    height: 4px;
+    background-color: #67234c; 
+    margin-bottom: 20px;
+}
+/* Alt Metin - Font Stili Aynı, Boyut Optimize */
+.hero-content p {
+    font-size: 1rem; /* 1.4rem'den 1.1rem'e çekildi (Zoom etkisini bitirir) */
+    font-weight: 500; 
+    color: #555; 
+    line-height: 1.6;
+    text-align: justify;}
+
+
+/*HAKKIMDA*/
+
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* ÖNEMLİ: İki kutunun yüksekliğini otomatik eşitler */
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 5%;
+}
+
+.about video, 
+.about img {
+    width: 100%; /* Genişliği biraz daraltmak "zoom" hissini azaltır */
+    max-width: 400px;
+    height: 450px; /* Daha makul bir dikey boy */
+    object-fit: cover;
+    border-radius: 15px;
+    /* Mobilde düzgün durması için */
+    flex-shrink: 0;
+}
+
+.about-text {
+    flex: 1; /* Mevcut boşluğu doldurur */
+    max-width: 400px; /* Görselle aynı genişlik sınırı */
+    background-color: #67234c;
+    padding: 40px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Metni dikeyde tam ortaya hizalar */
+    min-height: 400px;
+    text-align: center; /* Başlık ve metni ortalamak bu kutuda daha şık durabilir */
+}
+
+.about-text h2 {
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Başlığın altına küçük beyaz bir çizgi (Opsiyonel - Şık durur) */
+.about-text h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: #fff;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9); /* Saf beyaz yerine çok hafif transparan daha yumuşaktır */
+    text-align: center;
+}
+
+/* ========================================= */
+/* ÜRÜNLER ve ETKİNLİKLER BÖLÜMLERİ */
+/* ========================================= */
+
+section {
+    padding: 80px 5%; /* Daha geniş nefes alma alanı */
+    text-align: center;
+    max-width: 1200px; /* İçeriğin dev ekranlarda aşırı yayılmasını önler */
+    margin: 0 auto;
+}
+
+
+
+.divider-center {
+    width: 30px;
+    height: 3px;
+    background-color: #67234c;
+    margin: 0 auto 40px auto;
+}
+
+/* KAPSAYICI (FLEX YAPISI) */
+.products .cards, 
+.event-cards { /* Sınıf ismi düzeltildi */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* ========================================= */
+/* 1. ÜRÜN KARTLARI (Klasik Stil) */
+/* ========================================= */
+.products .card {
+    text-decoration: none; 
+    color: #333; 
+    width: 250px; /* Genişlik biraz artırıldı */
+    background: #fff; 
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #f0f0f0; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.products .card img {
+    width: 100%;
+    height: 180px; /* Daha zarif bir yükseklik */
+    object-fit: cover; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.products .card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.products .card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================= */
+/* 2. ETKİNLİK KARTLARI (Overlay Stil) */
+/* ========================================= */
+/* NOT: Burada sadece .event-card-item kullanıyoruz, .card karmaşasını sildik */
+.event-card-item {
+    position: relative;
+    width: 280px; /* Ürünlerle uyumlu olması için 300'den çekildi */
+    height: 320px; /* İçeriğin sığması için dikey boy korundu */
+    overflow: hidden;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
+}
+
+.event-card-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0; /* top, left, right, bottom: 0 yerine kısa yol */
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.event-card-item:hover .card-overlay {
+    opacity: 1;
+}
+
+.event-card-item:hover img {
+    transform: scale(1.1);
+}
+
+/* BUTON HOVER */
+.view-button:hover {
+    background-color: #4a1936; /* Tema renginin biraz koyusu */
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Yazı Boyutları Küçültüldü */
+.card-overlay h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-overlay p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.view-button {
+    background-color: #67234c;
+    color: #fff;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+
+/* ========================================= */
+/* SCROLL ANIMASYONU STİLLERİ */
+/* ========================================= */
+
+/* GENEL ANİMASYON BAŞLANGIÇ STİLİ (procts ve events için) */
+.products,
+.events {
+    /* Animasyonun çalışması için pozisyon ayarı */
+    position: relative; 
+    /* Başlangıçta hafif alttan kaymış (20px) ve görünmez */
+    transform: translateY(30px); 
+    opacity: 0;
+    /* Yumuşak geçiş */
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease-out;
+    will-change: transform, opacity; /* Tarayıcı performansını optimize eder */
+}
+
+/* GÖRÜNÜR OLMA DURUMU */
+/* is-visible sınıfı eklendiğinde animasyonu bitir */
+.products.is-visible,
+.events.is-visible {
+    transform: translateY(0); /* Normal pozisyonuna geri dön */
+    opacity: 1; /* Tamamen görünür yap */
+}
+
+/* Başlangıç Durumu (Ekrana girmeden önce) */
+/* Resim (img) ve Yazı Kutusu (div) varsayılan olarak solda gizlenir */
+.about img,
+.about video
+ {
+    /* Soldan dışarıda başlat */
+    transform: translateX(-30%); 
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 0.8s ease-in-out;
+}
+
+/* Yazı Kutusu (Sağdan Gelsin) */
+.about-text { /* .about div yerine daha spesifik isim kullandık */
+    transform: translateX(30px); 
+    opacity: 0;
+    transition: transform 1s ease-out 0.3s, opacity 0.8s ease-in-out 0.3s; /* Gecikmeyi buraya yazdık */
+}
+
+
+
+
+
+/* Bitiş Durumu (Ekran Gözlemcisi 'is-visible' eklediğinde) */
+/* Resim ve Yazı Kutusu görünür hale gelir ve yerlerine kayar */
+.about.is-visible img,
+.about.is-visible video,
+.about.is-visible .about-text {
+    /* Başlangıç pozisyonuna geri dön (görünür yap) */
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
+
+
+/* ========================================= */
+/* İLETİŞİM / FOOTER STİLİ (Genişlik Tamamlama ve Mesafe Ayarı) */
+/* ========================================= */
+
+.contact-footer {
+    background:#671d4f;; /* Tema Rengi Koyu Tonu */
+    color: #fff;
+    padding-top: 40px; /* 50px'den düştü */
+    
+
+}
+
+.footer-content-wrapper {
+     
+    display: flex;
+    /* İki ana öğeyi (bilgi ve harita) iki yana yasla */
+    justify-content: space-between;    
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto; /* Otomatik margin'i kaldır */
+    /* Yatay padding'i (sol ve sağ) 50px olarak artırarak kenarlardan boşluk bırakıyoruz */
+    padding: 0 5% 40px 5%;
+    /* İki alan arasındaki mesafeyi (gap) açıyoruz */
+    gap: 50px; 
+    flex-wrap: wrap;
+   
+}
+
+.footer-info{
+    /* İki alanın da eşit genişlikte yer kaplamasını sağla */
+    flex: 1; 
+    min-width:280px; /* Çok daralmasını engelle */
+    text-align: left; /* Yazılar sola yaslı */
+}
+.footer-map {
+    flex: 1.5; /* Haritaya biraz daha fazla alan verelim */
+    min-width: 300px;
+    
+}
+
+.footer-info h3, .footer-map h3{
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #903c74; /* Çizgi rengi */
+    padding-bottom: 3px;
+    display: inline-block;
+}
+
+.footer-info p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* İkon kullanırsan aradaki boşluk */
+} 
+
+
+/* HARİTA (IFRAME) STİLİ */
+.footer-map iframe {
+    /* GENİŞLİK: İçinde bulunduğu alanı (footer-map) tam kapla */
+    width: 100%;
+    /* YÜKSEKLİK: Sabit bir yükseklik ver */
+    height: 220px; 
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    filter: grayscale(20%); /* Haritayı tasarıma uydurmak için hafif grileştirme */
+}
+
+/* SOSYAL MEDYA İKONLARI (Aynı Kalır) */
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-right: 15px;
+    /*transition: color 0.3s ease;*/
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+.social-links a:hover {
+    transform: translateY(-5px); /* Yukarı zıplama efekti */
+}
+
+.social-links .fa-instagram:hover {
+    color: #E1306C;
+}
+.social-links .fa-whatsapp:hover {
+    color: #25D366;
+}
+
+/* TELİF HAKKI (COPYRIGHT) (Aynı Kalır) */
+.footer-copyright {
+    text-align: center;
+    padding: 15px;
+    background: #2f0c23;
+}
+.footer-copyright p {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin: 0;
+}
+
+
+/* ========================================= */
+/* ETKİNLİKLER SAYFASI (ETKİNLİKLER.HTML) STİLLERİ */
+/* ========================================= */
+
+/* Sayfa Başlığı Alanı */
+.page-header {
+ max-width: 100% !important;
+height: 40vh;
+text-align: center;
+padding: 80px 5%;
+background-color:  #e8dfdf;
+border-bottom: 1px solid #eee;
+}
+
+.page-header h1 {
+font-size: 1.6rem;
+color:#67234c;
+margin-top: 20px !important;
+font-weight: 800;
+}
+
+.page-header p {
+font-size: 1rem;
+color: #666;
+max-width: 700px; /* Metnin çok yayılmasını önler */
+margin: 0 auto;
+}
+
+/* Tekil Etkinlik Detay Bölümü */
+.event-detail-section {
+padding: 60px 5%;
+background-color: #f9f3f3;
+ 
+}
+
+/* Bölümler arası ayırıcı */
+
+.section-spacer {
+height: 1px;
+background: #67234c;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* İçerik Kapsayıcısı */
+.detail-content {
+max-width: 1000px;
+margin: 0 auto;
+padding: 0 20px;
+text-align: center;
+
+}
+
+/* Başlık */
+.detail-title {
+font-size: 1.2em;
+color: #67234c; /* Tema Rengi */
+margin-bottom: 8px;
+}
+.detail-subtitle {
+font-size: 1rem;
+color: #666;
+margin-bottom: 25px;
+}
+
+/* Tarih/Saat/Konum Bilgileri */
+.event-meta {
+font-size: 0.95rem;
+margin-bottom: 40px;
+color: #444;
+padding: 15px;
+display: inline-block;
+border-radius: 50px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.event-meta span {
+margin: 0 15px;
+font-weight: 600;
+}
+.event-meta i {
+color: #67234c;
+margin-right: 5px;
+}
+
+/* Açıklama ve Görselin Ortak Kapsayıcısı */
+.detail-description {
+display: flex;
+align-items: center;
+gap: 5%;
+text-align: left;
+flex-wrap: wrap; /* Mobilde otomatik alt alta geçer */
+}
+.detail-description p {
+flex: 1;
+min-width: 300px;
+font-size: 1rem;
+line-height: 1.6;
+color: #333;
+text-align: justify;
+
+}
+
+/* Görsel */
+.detail-image {
+width: 35%;
+max-width: 300px;
+min-width: 280px;
+height: 200px;
+object-fit: cover;
+border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+/* Hover efekti (isteğe bağlı) */
+.detail-image:hover {
+transform: scale(1.02); /* Çok hafif bir büyüme efekti */
+}
+
+/* Ters Düzen (Bambu için) */
+.reverse-layout .detail-description {
+flex-direction: row-reverse; /* Resmi sağa, yazıyı sola alır */
+}
+
+/* Kayıt Butonu */
+.register-button {
+display: inline-block;
+background-color: #67234c;
+color: #fff;
+padding: 10px 25px;
+margin-top: 30px;
+border-radius: 6px;
+text-decoration: none;
+font-weight: 600;
+transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+transform: translateY(-2px);
+background-color: #903c74;
+}
+
+
+
+/* ========================================= */
+/* ÜRÜNLER SAYFASI (URUNLER.HTML) STİLLERİ */
+/* ========================================= */
+
+/* Ürün Kartı - Daha esnek ve modern */
+.product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    /* max-width: 280px yerine grid'in kendi esnekliğini kullanacağız */
+    width: 100%; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column; /* İçeriği dikeyde hizalamak için */
+}
+
+.category-title {
+    font-size: 1.6rem;
+    color: #67234c; /* Tema Rengi */
+    margin: 30px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #67234c;
+}
+
+/* 1. Kapsayıcı Izgara (Grid) Düzenlemesi */
+.gallery-grid {
+    display: grid;
+    /* minmax değerini 300px'den 250px'e düşürdük. 
+       Bu sayede kutular daralır ve yan yana daha rahat sığar. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px; /* Kutular arası boşluğu 30px'den 20px'e çektik */
+    max-width: 1000px; /* Tüm galerinin dev gibi yayılmasını engelledik */
+    margin: 0 auto; /* Sayfayı ortaladık */
+    
+}
+.gallery-image {
+    width: 100%;
+    height: 220px; /* Bir tık daha yüksek görsel alanı */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Hover efekti resme de etki etsin */
+.product-card:hover .gallery-image {
+    transform: scale(1.08);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-details {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1; /* Açıklama kısa olsa bile kartın dolmasını sağlar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.product-description {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 12px;
+    /* Satır sınırlama: Yazı çok uzunsa 2. satırda üç nokta koyar */
+    display: -webkit-box;
+    /*-webkit-line-clamp: 2;*/
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #67234c; /* Tema Rengi */
+}
+
+
+
+
+
+
+/* ================================================= */
+/* 1. HİKAYE BÖLÜMLERİ (STORY SECTIONS)            */
+/* ================================================= */
+
+
+.story-row-section {
+    padding: 60px 0;
+    background-color: #f9f3f3; /* Temel arka plan rengi */
+}
+
+.story-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    
+    align-items: center;
+    gap: 30px;
+}
+
+/* Zig-Zag Düzen */
+.zag-layout .story-container {
+    flex-direction: row-reverse;
+}
+
+.story-media-block {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    height: 280px;
+}
+
+.story-media-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.story-media-block:hover img {
+    transform: scale(1.05);
+}
+
+.story-text-card {
+    flex: 1;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(103, 35, 76, 0.08);
+    border-left: 4px solid #67234c;
+    display: flex;
+    flex-direction: column;
+    height: 340px;
+    justify-content: center; /* Metni dikeyde ortalar */
+}
+
+.story-title {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.story-para {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+    text-align:justify;
+    text-justify: inter-word; 
+    hyphens: auto; /* Kelimelerin çirkin bölünmesini önler */
+}
+
+
+/* ================================================= */
+/* 2. KARMA MOZAİK GALERİ (GÜNCEL & DÜZELTİLMİŞ)    */
+/* ================================================= */
+
+.mixed-mosaic-gallery {
+    padding: 60px 0;
+    /* İSTEDİĞİNİZ DEĞİŞİKLİK: Arka plan rengi üstteki bölümlerle aynı yapıldı */
+    background-color: #f9f3f3; 
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.mosaic-grid.full-width-grid {
+    display: grid;
+    /* Hücre yapısı */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-auto-rows: 140px;
+    /* Boşlukları otomatik doldurma */
+    grid-auto-flow: dense; 
+    gap: 12px;
+    /* Kenarlardan şık boşluk */
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.mosaic-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #eee; /* Resim yüklenene kadar boş alan rengi */
+}
+
+.mosaic-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.mosaic-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Boyutlandırma Sınıfları */
+.mosaic-item.big   { grid-column: span 2; grid-row: span 2; }
+.mosaic-item.tall  { grid-row: span 2; }
+.mosaic-item.wide  { grid-column: span 2; }
+.mosaic-item.mid   { grid-column: span 2; }
+.mosaic-item.small { grid-column: span 1; grid-row: span 1; }
+
+/* Lightbox Modal Arka Planı */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+/* Modal İçindeki Resim */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80vh;
+    border-radius: 10px;
+    animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.7)} 
+    to {transform: scale(1)}
+}
+
+/* Kapatma Butonu */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Ok Butonları */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    text-decoration: none;
+}
+
+.next { right: 5%; border-radius: 3px 0 0 3px; }
+.prev { left: 5%; }
+
+.prev:hover, .next:hover {
+    background-color: rgba(103, 35, 76, 0.8);
+}
+
+/* ================================================= */
+/* 3. MOBİL UYUMLULUK (RESPONSIVE)                  */
+/* ================================================= */
+
+
+    @media (max-width: 768px) {
+    .story-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    .story-text-card {
+        padding: 30px 20px;
+    }
+    .story-media-block {
+        width: 100%;
+    }
+    .story-media-block {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mosaic-grid.full-width-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-auto-rows: 140px;
+        gap: 10px;
+        max-width: 95%;
+    }
+    /* Mobilde çok büyük parçaları küçültmek gerekebilir */
+    .mosaic-item.wide, .mosaic-item.mid { grid-column: span 2; }
+}
+/* ========================================= */
+/* MODAL (LIGHTBOX) STİLİ */
+/* ========================================= */
+
+.modal {
+    display: none; /* Varsayılan olarak gizli */
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9); /* Yarı saydam siyah arka plan */
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+    max-height: 90vh;
+    border-radius: 8px;
+    animation: zoomIn 0.4s;
+}
+
+/* Kapatma Butonu */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Açıklama Yazısı */
+.caption {
+    margin: 15px auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 1.1rem;
+}
+
+/* Animasyonlar */
+@keyframes zoomIn {
+    from {transform: scale(0.5)} 
+    to {transform: scale(1)}
+}
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+/* bambu yazı css*/
+/* Kategori Tanıtım Alanı CSS */
+.category-intro-section {
+    padding: 60px 20px;
+    background-color: #f9f3f3;
+    text-align: center;
+}
+
+.intro-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.intro-subtitle {
+    display: block;
+    color: #67234c;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.intro-title {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.intro-divider {
+    width: 60px;
+    height: 3px;
+    background-color: #67234c;
+    margin: 0 auto 25px;
+    border-radius: 2px;
+}
+
+.intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+    font-style: italic;
+    font-family: 'Georgia', serif; /* Yazıya daha klasik/sıcak bir hava katar */
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .intro-title {
+        font-size: 1.8rem;
+    }
+    .intro-text {
+        font-size: 1rem;
+    }
+}
+
+
+/* ========================================= */
+/* MOBİL VE TABLET UYUMLULUK (Max 992px)     */
+/* ========================================= */
+
+@media (max-width: 992px) {
+    
+    /* 1. GENEL AYARLAR */
+    section {
+        padding: 40px 5%;
+    }
+
+    /* 2. HEADER (NAVBAR) - SABİT VE YANA KAYAR MENÜ */
+    header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 15px !important;
+        z-index: 100000;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav {
+        display: flex !important;
+        overflow-x: auto; /* Mobilde yana kaydırma sağlar */
+        white-space: nowrap;
+        gap: 12px !important;
+        padding-bottom: 5px;
+        width: 100%;
+        justify-content: flex-start; /* Kaydırma için başlangıca yasla */
+        -webkit-overflow-scrolling: touch;
+        margin-top: 8px;
+    }
+    
+    nav::-webkit-scrollbar { display: none; } /* Kaydırma çubuğunu gizle */
+
+    nav a {
+        font-size: 0.8rem !important;
+        padding: 5px 8px !important;
+    }
+
+    /* 3. KAHRAMAN BÖLÜMÜ (HERO) - SOLA YASLI VE DARALTILMIŞ */
+    .hero {
+        height: 400px !important;
+        padding-top: 100px; /* Sabit header için boşluk bırakıldı */
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .hero-content {
+        width: 85% !important;
+        max-width: 320px !important; /* İstediğin gibi kutuyu sınırladık */
+        min-height: auto !important;
+        padding: 20px !important;
+        text-align: justify; /* Paragrafı yanlara yaslama */
+        text-justify: inter-word;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+
+    /* 4. HAKKIMIZDA BÖLÜMÜ - DİKEY DÜZEN */
+    .about {
+        flex-direction: column; 
+        gap: 20px;
+        padding: 40px 5%; 
+        min-height: auto; 
+    }
+    
+    .about video,
+    .about .about-text { 
+        width: 100% !important; 
+        max-width: 100% !important;
+        height: auto !important; 
+        min-height: auto !important; 
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .about video {
+        max-height: 400px !important; 
+        min-height: 250px !important; 
+        padding: 0;
+    }
+
+    .about h2 {
+        font-size: 1.6rem;
+    }
+    
+    .about p {
+        font-size: 1rem; 
+        line-height: 1.9;
+        text-align: justify; /* Hakkımızda paragrafını da yasladık */
+        text-justify: inter-word;
+    }
+    
+    /* 5. ANİMASYONLAR (Masaüstü TranslateX yerine TranslateY) */
+    .about video,
+    .about .about-text {
+        transform: translateY(30px);
+        opacity: 0;
+        transition: transform 0.8s ease-out, opacity 0.6s ease-in-out;
+    }
+    
+    .about.is-visible video,
+    .about.is-visible .about-text {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+    }
+    
+    .about.is-visible .about-text {
+        transition-delay: 0.2s;
+    }
+
+    /* 6. ÜRÜNLER / ETKİNLİKLER GALERİSİ */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 sütun en güvenlisidir */
+        gap: 20px !important;
+        padding: 10px !important;
+    }
+    
+    .gallery-image {
+        height: 160px !important;
+    }
+}
+
+    
+    
+    
+   
+
+/* Telefon Cihazları (768px ve altı) */
+@media (max-width: 768px) {    
+
+    /* Başlıkları ve Metinleri "Zoom" Etkisinden Kurtaralım */
+    h2, .intro-title, .about h2, .detail-title {
+        font-size: 1.5rem !important; /* 2.5rem çok büyüktü, 1.5rem ideale çekildi */
+    }
+
+    p, .about p, .intro-text {
+        font-size: 0.95rem !important; /* 1.3rem çok büyüktü, standart yapıldı */
+        line-height: 1.5 !important;
+    }
+ 
+    /* 1. HEADER & MENÜ (Dropdown Sorunu Çözüldü) */
+    header {
+        display: flex !important;
+        flex-direction: column !important; /* Logo üstte, menü altta olsun */
+        align-items: center !important;
+        padding: 10px 0 !important;
+        position: fixed !important; 
+        top: 0; left: 0;
+        z-index: 99999; 
+        background-color: #ffffff; 
+        width: 100%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       
+    }   
+
+
+   /* 1. Navigasyonun taşmasını önleyen engelleri kaldıralım */
+    nav {
+        flex-direction: row !important; /* YAN YANA DURMAYI ZORLAR */
+        flex-wrap: nowrap !important; /* ASLA ALT SATIRA GEÇMEZ */
+        display: block !important; /* Esnek yapıyı (flex) bozup blok yapıyoruz */
+        overflow: visible !important; /* Kesilmeyi engelle */
+
+        width: 100% !important;
+        white-space: normal !important; /* Linklerin gerekirse alta geçmesine izin ver */
+        text-align: center;
+        -webkit-overflow-scrolling: touch; /* iOS için akıcı kaydırma */
+    }
+
+    /* Kaydırma çubuğunu gizleyerek temiz bir görüntü sağlar */
+    nav::-webkit-scrollbar {
+        display: none;
+    }
+    
+
+    /* 1. Dropdown kapsayıcısını mobilde serbest bırakalım */
+    .dropdown {
+        position: relative !important; /* Alt menü buna göre hizalansın */
+        display: inline-block !important;
+    }
+    
+   /* 2. Dropdown içeriğini bilgisayardaki gibi dikey liste yapalım */
+    .dropdown-content {
+        display: none;
+        position: absolute !important; /* Linkin tam altında açılması için */
+        top: 100% !important;
+        left: 0 !important;
+        min-width: 180px !important; /* Bilgisayardaki genişlik hissi */
+        background-color: #ffffff !important;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
+        z-index: 1000000 !important; /* Her şeyin en üstünde */
+        border-top: 3px solid #67234c;
+        border-radius: 0 0 8px 8px; /* Alt köşeleri yuvarla */
+        padding: 0 !important;
+    }
+
+
+    
+    /* 3. Menü içindeki linkleri bilgisayardaki gibi tasarlayalım */
+    .dropdown-content a {
+        color: #333 !important;
+        padding: 12px 16px !important; /* Bilgisayar görünümü padding'i */
+        text-decoration: none !important;
+        display: block !important; /* Alt alta dizilme kuralı */
+        text-align: left !important; /* Bilgisayardaki gibi sola yaslı */
+        font-size: 0.85rem !important;
+        border-bottom: 1px solid #f1f1f1;
+        width: 100% !important;
+    }
+/* Son linkteki çizgiyi kaldıralım */
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+    
+    
+    /* Mobilde dokununca veya üstüne gelince açılsın */
+    .dropdown:hover .dropdown-content,
+    .dropdown:active .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+        display: block !important;
+    }
+    
+
+    
+    /* Logo / Başlık kısmı */
+    header h1 {
+        font-size: 1.2rem !important; /* Başlığı küçülterek menüye alan açtık */
+        margin-bottom: 0 !important;
+    }
+.hero {
+        height: 450px !important;
+        padding-top: 110px !important; /* Header yüksekliği kadar boşluk */
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+
+    .hero-content {
+        width: 85% !important;
+        max-width: 300px !important;
+        padding: 20px !important;
+        text-align: justify !important; /* İstediğin yaslama */
+        text-justify: inter-word;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+    }
+
+    /* KAHRAMAN BÖLÜMÜ (HERO) */
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .products h2, .events h2 {
+        font-size: 1.6rem;
+    }
+
+       
+    /* ÜRÜNLER / ETKİNLİKLER GALERİSİ (Tek Sütun) */
+    
+    .gallery-grid {
+        display: grid !important;
+        /* auto-fit yerine zorunlu 2 sütun (1fr 1fr) yapıyoruz */
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 sütun yaptık */
+        gap: 30px !important; /* Mobilde boşlukları daralttık */
+        padding: 0 10 px !important;
+        margin: 20px;
+    }
+    product-card {
+        max-width: 100% !important; /* 280px sınırını mobilde kaldırıyoruz */
+        margin-bottom: 10px;
+    }
+
+    .gallery-image {
+        height: 120px !important; /* Yan yana sığması için yüksekliği düşürdük */
+    }
+
+    .product-details {
+        padding: 8px; /* İç boşluğu küçülterek alan kazandık */
+    }
+
+    .product-description {
+        font-size: 0.8rem !important; /* Yazılar taşmasın */
+        min-height: 30px;
+    }
+
+    /* FOOTER */
+    .footer-content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px 30px 20px;
+       /* padding: 0 15px 30px 15px;*/
+    }
+    .footer-info, .footer-map {
+        min-width: 100%;
+    }
+    .footer-map iframe { height: 200px; }
+
+    /* TEKİL ETKİNLİKLER SAYFASI (ETKINLIKLER.HTML) */
+    .detail-description {
+        flex-direction: column; /* Görsel ve metni alt alta getir */
+    }
+    .detail-description p {
+        order: 2; /* Metni alta al */
+    }
+    .detail-image {
+        display: block;
+        width: 100%;
+        max-width: 350px;
+        margin: 20px auto 0 auto !important; /* Buton ile resim arasına mesafe koy */
+        /*order: 1; /* Görseli üste al */
+        margin-bottom: 20px;
+    }
+    .event-meta span {
+        display: block;
+        margin: 5px 0;
+    }
+    /* Eğer metin alanı butona çok yakınsa */
+    .event-meta {
+        margin-bottom: 20px !important;
+    }
+
+    /* Butonun mobilde resmin üstüne binmesini engeller */
+    .register-button {
+        display: block; /* Genişliği tam kontrol edebilmek için */
+        width: fit-content; /* İçindeki yazı kadar yer kapla */
+        margin: 20px auto !important; /* Üstten ve alttan kesin boşluk bırak */
+        position: relative;
+        z-index: 5;
+    }
+    /* Yazı Kutuları */
+    .about-text, .story-text-card {
+        width: 100% !important;
+        max-width: 100% !important; /* Taşmayı engeller */
+        height: auto !important; /* Yazı ne kadar uzunsa kutu o kadar uzar */
+        padding: 20px !important;
+        margin: 0 !important;
+        box-sizing: border-box; /* Padding'in genişliğe dahil olmasını sağlar */
+    }
+    
+   
+    /* ========================================= */
+/* MODAL (LIGHTBOX) OPTİMİZE EDİLDİ          */
+/* ========================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    align-items: center; /* İçeriği dikeyde ortalar */
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Resmin bozulmasını önler */
+    border-radius: 4px;
+    animation: zoomIn 0.3s ease;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #fff;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+}
+
+
+
+
+

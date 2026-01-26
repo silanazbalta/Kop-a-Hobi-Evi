@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Örgü Ürünler - Kopça Hobi Evi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <h1 class="logo">Kopça Hobi Evi</h1>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <div class="dropdown">
+                <a href="#ürünler" class="dropbtn">Ürünler <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+                <div class="dropdown-content">
+                    <div class="menu-columns">
+                        <div class="column">
+                            <a href="orguurunler.html">Örgü Ürünler</a>
+                            <a href="deriurunler.html">Deri Ürünler</a>
+                            <a href="takilar.html">Takılar</a>
+                            <a href="ipler.html">İpler</a>
+                        </div>
+                        <div class="column">
+                            <a href="bambu.html">Bambu Ürünler</a>
+                            <a href="züccaciye.html">Züccaciye Ürünler</a>
+                            <a href="hobi.html">Hobi Ürünleri</a>
+                            <a href="aksesuarlar.html">Aksesuarlar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="etkinlikler.html">Etkinlikler</a>
+            <a href="hakkımızda.html">Hakkımızda</a>
+            <a href="#iletisim">İletişim</a>
+        </nav>
+    </header>
+
+
+    <section class="page-header" 
+    style="background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('kopcaresim/örgürünlerarkaplan.jpeg'); 
+           background-size: cover; 
+           background-position: center; 
+           padding: 130px 20px; 
+           text-align: center;
+           border-bottom: 1px solid rgba(0,0,0,0.1);">
+    
+    <h1 style=" margin-bottom: 15px; font-weight: 700;">Örgü Koleksiyonumuz</h1>
+    
+    <div style="width: 80px; height: 3px; background-color: #67234c; margin: 20px auto; border-radius: 2px;"></div>
+    
+    <p style="color: #67234c; font-weight: 700; font-size: 1.6rem; max-width: 800px; margin: 0 auto; text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 0.8);">
+        Geleneksel motiflerin modern dokunuşlarla buluştuğu el emeği ürünler.
+    </p>
+</section>
+
+    
+
+    <section class="product-gallery">
+        <h2 class="category-title">Örgü Çantalar</h2>
+        <div class="gallery-grid" id="container-cantalar"></div>
+    </section>
+
+    <section class="product-gallery">
+        <h2 class="category-title">Şapkalar</h2>
+        <div class="gallery-grid" id="container-sapkalar"></div>
+    </section>
+
+    <section class="product-gallery">
+        <h2 class="category-title">Örgü Kıyafetler</h2>
+        <div class="gallery-grid" id="container-kiyafetler"></div>
+    </section>
+
+    
+    
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">×</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+    </div>
+
+    
+
+    <script>
+        const instagramNote = "Alım için instagram üzerinden iletişime geçiniz veya dükkanımıza bekleriz.";
+
+        // --- 1. VERİ LİSTELERİ ---
+
+        const cantalar = 
+            [
+   
+    { name: "Örgü Büyük Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (4).jpeg" },
+    { name: "Örgü Desenli Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (5).jpeg" },
+    { name: "Kahve Clucth Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (14).jpeg" },
+    { name: "Mor El Örgüsü Çanta", price: "Bilgi için instagramdan ulaşınızz", img: "Ç (8).jpeg" },
+    { name: "Bambu Çanta Model 1", price: "Bilgi için instagramdan ulaşınız", img: "Ç (9).jpeg" },
+    { name: "Bambu Çanta Model 2", price: "Bilgi için instagramdan ulaşınız", img: "Ç (10).jpeg" },
+    { name: "Bambu Çanta Model 3", price: "Bilgi için instagramdan ulaşınızz", img: "Ç (11).jpeg" },
+    { name: "Renkli Clucth Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (13).jpeg" },
+    { name: "Kahve Clucth Çanta", price: "Bilgi için instagramdan ulaşınızz", img: "Ç (14).jpeg" },
+    { name: "Bez El İşlemeli Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (15).jpeg" },
+    { name: "İncili Örgü Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (16).jpeg" },
+    { name: "Bez El İşlemeli Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (17).jpeg" },
+    { name: "Boncuk Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (18).jpeg" },
+    { name: "El Örgüsü Renkli Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (19).jpeg" },
+    { name: "El Yapımı Kot Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (20).jpeg" },
+    { name: "Siyah El Örgüsü Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (21).jpeg" },
+    { name: "Gri İstiridye Model Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (23).jpeg" },
+    { name: "El Örgüsü Gri Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (22).jpeg" },    
+    { name: "Kahve Büyük Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (24).jpeg" },
+    { name: "Gri Model Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (28).jpeg" },
+     { name: "Bez Çanta", price:"Bilgi için instagramdan ulaşınız", img: "Ç (2).jpeg" },
+    { name: "Kalpli Bez Çanta", price:"Bilgi için instagramdan ulaşınız", img: "Ç (3).jpeg" },
+    { name: "Kırmızı Büyük Çanta", price: "Bilgi için instagramdan ulaşınız", img: "Ç (6).jpeg" }
+    
+
+            
+
+
+        ];
+
+        const sapkalar = [
+            { name: "Şapka Model 1", price: "Bilgi için instagramdan ulaşınız", img: "S (1).jpeg"  },
+            { name: "Şapka Model 2", price: "Bilgi için instagramdan ulaşınız", img: "S (2).jpeg"  },            
+            { name: "Şapka Model 3", price: "Bilgi için instagramdan ulaşınız", img: "S (4).jpeg" },
+            {name: "Şapka Model 4", price: "Bilgi için instagramdan ulaşınız", img: "S (5).jpeg"  },
+            { name: "Şapka Model 5", price: "Bilgi için instagramdan ulaşınız", img: "S (6).jpeg"  },
+            {name: "Kağıt İpten Şapka", price: "Bilgi için instagramdan ulaşınız", img: "S (7).jpeg" },
+            { name: "Kağıt İpten", price: "Bilgi için instagramdan ulaşınız", img: "S (8).jpeg"  },
+            {name: "Şapka Model 6", price: "Bilgi için instagramdan ulaşınız", img: "S (9).jpeg"  },
+            { name: "Şapka Model 7", price: "Bilgi için instagramdan ulaşınız", img: "S (10).jpeg"  },
+            {name: "Kağıt İpten Şapka", price: "Bilgi için instagramdan ulaşınız", img: "S (11).jpeg"  },
+            { name: "Bambu Şapka", price: "Bilgi için instagramdan ulaşınız", img: "S (12).jpeg" }
+        ];
+
+        const kiyafetler = [
+         { name: "Örgü Atkı ", price: "Bilgi için instagramdan ulaşınız", img: "S (3).jpeg" },
+         { name: "Örgü Bandana", price:"Bilgi için instagramdan ulaşınız", img: "Ö (1).jpeg" },
+         { name: "Örgü Bebek Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (2).jpeg" },
+         { name: "Örgü Bebek Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (4).jpeg" },
+         { name: "Örgü Bebek Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (5).jpeg" },
+         { name: "Örgü Bebek Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (6).jpeg" },
+         { name: "Örgü Bebek Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (7).jpeg" },
+         { name: "Örgü Atkı ", price: "Bilgi için instagramdan ulaşınız", img: "Ö (8).jpeg" },
+         { name: "Örgü Bebek Patik", price: "Bilgi için instagramdan ulaşınız", img: "Ö (9).jpeg" },
+         { name: "Örgü Bluz", price: "Bilgi için instagramdan ulaşınız", img: "Ö (10).jpeg" },
+         { name: "Örgü Bluz", price:"Bilgi için instagramdan ulaşınız", img: "Ö (11).jpeg" },
+         { name: "Örgü Atkı", price:"Bilgi için instagramdan ulaşınız", img: "Ö (12).jpeg" },
+         { name: "Örgü Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (13).jpeg" },
+         { name: "Örgü Şal", price: "Bilgi için instagramdan ulaşınız", img: "Ö (14).jpeg" },
+         { name: "Örgü Boyunluk", price: "Bilgi için instagramdan ulaşınız", img: "Ö (15).jpeg" },              
+         { name: "Örgü Şal", price: "Bilgi için instagramdan ulaşınız", img: "Ö (16).jpeg" },
+         { name: "Örgü Bebek Battaniye Yastık Takımı", price: "Bilgi için instagramdan ulaşınız", img: "Ö (17).jpeg" },
+            { name: "Örgü Şal", price: "Bilgi için instagramdan ulaşınız", img: "Ö (18).jpeg" },
+          { name: "Örgü Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (19).jpeg" },
+          { name: "Örgü Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (20).jpeg" },
+           { name: "Örgü Bluz", price: "Bilgi için instagramdan ulaşınız", img: "Ö (21).jpeg" },
+          { name: "Örgü Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (22).jpeg" },
+      { name: "Örgü Battaniye", price: "Bilgi için instagramdan ulaşınız", img: "Ö (23).jpeg" },
+            { name: "Örgü Şal", price: "Bilgi için instagramdan ulaşınız", img: "Ö (24).jpeg" },
+          { name: "Örgü Yelek", price: "Bilgi için instagramdan ulaşınız", img: "Ö (25).jpeg" },
+       { name: "Örgü Boyunluk", price: "Bilgi için instagramdan ulaşınız", img: "Ö (26).jpeg" },
+{ name: "Örgü Şapka ve Atkı Takımı", price: "Bilgi için instagramdan ulaşınız", img: "Ö (27).jpeg" },
+        { name: "Örgü Eldiven", price: "Bilgi için instagramdan ulaşınız", img: "Ö (28).jpeg" },
+           { name: "Örgü Atkı", price: "Bilgi için instagramdan ulaşınız", img: "Ö (29).jpeg" },
+ { name: "Örgü Bebek Elbisesi", price: "Bilgi için instagramdan ulaşınız", img: "Ö (30).jpeg" },
+
+            
+            
+        ];
+
+        
+        // --- 2. FONKSİYONLAR ---
+
+        function renderProducts(list, containerId, folder) {
+            const container = document.getElementById(containerId);
+            const folderPath = `kopcaresim/Örgü Ürünler/`;
+            
+            list.forEach(item => {
+                const fullImgPath = folderPath + item.img;
+                const cardHTML = `
+                    <div class="product-card">
+                        <img src="${encodeURI(fullImgPath)}" 
+                             alt="" 
+                             class="gallery-image" 
+                             onerror="this.src='https://via.placeholder.com/300?text=Resim+Yok'"
+                             onclick="openModal('${encodeURI(fullImgPath)}', '${instagramNote}')">
+                        <div class="product-details">
+                            <p class="product-description">${item.name}</p>
+                            <p class="product-price">${item.price}</p>
+                        </div>
+                    </div>`;
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        // --- 3. ÇALIŞTIRMA ---
+        // Not: Klasör isimlerini bilgisayarınızdakilerle birebir aynı yapın.
+        renderProducts(cantalar, 'container-cantalar', 'Örgü Ürünler');
+        renderProducts(sapkalar, 'container-sapkalar', 'Şapkalar');
+        renderProducts(kiyafetler, 'container-kiyafetler', 'Örgü Ürünler');
+        
+
+        // Modal Fonksiyonları
+        function openModal(imgSrc, captionText) {
+            document.getElementById("imageModal").style.display = "block";
+            document.getElementById("modalImage").src = imgSrc;
+            document.getElementById("caption").innerHTML = captionText;
+        }
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+    </script>
+
+    <footer class="contact-footer" id="iletisim">
+    <div class="footer-content-wrapper">
+        
+        <div class="footer-info">
+            <h3>Bize Ulaşın</h3>
+            <p>
+                Adres: Merkez, Mehmet Yavuz Cd. No: 50, 34820 Beykoz/İstanbul<br>
+                Telefon: 0 (533) 688 29 91<br>
+                E-Posta: kopcahobievii@gmail.com
+            </p>
+            
+            <div class="social-links">
+                <a href="https://instagram.com/kopcahobievi" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/905336882991" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-map">
+            <h3>Konumumuz</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.0120001106147!2d29.094592000000006!3d41.134263999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cacb5f8fad1e63%3A0x368df094079f9ac!2sKop%C3%A7a%20Hobi%20Evi!5e0!3m2!1str!2str!4v1762130355999!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+    
+    <div class="footer-copyright">
+        <p>&copy; 2025 Kopça Hobi Evi | Tüm Hakları Saklıdır.</p>
+    </div>
+</footer>
+</body>
+</html>

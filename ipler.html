@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İpler - Kopça Hobi Evi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <h1 class="logo">Kopça Hobi Evi</h1>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <div class="dropdown">
+                <a href="#ürünler" class="dropbtn">Ürünler <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+                <div class="dropdown-content">
+                    <div class="menu-columns">
+                        <div class="column">
+                            <a href="orguurunler.html">Örgü Ürünler</a>
+                            <a href="deriurunler.html">Deri Ürünler</a>
+                            <a href="takilar.html">Takılar</a>
+                            <a href="ipler.html">İpler</a>
+                        </div>
+                        <div class="column">
+                            <a href="bambu.html">Bambu Ürünler</a>
+                            <a href="züccaciye.html">Züccaciye Ürünler</a>
+                            <a href="hobi.html">Hobi Ürünleri</a>
+                            <a href="aksesuarlar.html">Aksesuarlar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="etkinlikler.html">Etkinlikler</a>
+            <a href="hakkımızda.html">Hakkımızda</a>
+            <a href="#iletisim">İletişim</a>
+        </nav>
+    </header>
+
+    <section class="page-header" 
+    style="background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('kopcaresim/iparkaplan.png'); 
+           background-size: cover; 
+           background-position: center; 
+           padding: 130px 20px; 
+           text-align: center;
+           border-bottom: 1px solid rgba(0,0,0,0.1);">
+    
+    <h1 style=" margin-bottom: 15px; font-weight: 700;">Örgü İplerimiz</h1>
+    
+    <div style="width: 80px; height: 3px; background-color: #67234c; margin: 20px auto; border-radius: 2px;"></div>
+    
+    <p style="color: #67234c; font-weight: 700; font-size: 1.6rem; max-width: 800px; margin: 0 auto; text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 0.8);">
+        Projelerinize renk ve kalite katacak en özel ip seçenekleri.
+    </p>
+</section>
+
+    <section class="product-gallery">
+        <h2 class="category-title">İp Koleksiyonu</h2>
+        <div class="gallery-grid" id="ipler-container"></div>
+    </section>
+    
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">×</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+    </div>
+
+    <footer class="contact-footer" id="iletisim">
+        <div class="footer-content-wrapper">
+            <div class="footer-info">
+                <h3>Bize Ulaşın</h3>
+                <p>
+                    Adres: Merkez, Mehmet Yavuz Cd. No: 50, 34820 Beykoz/İstanbul<br>
+                    Telefon: 0 (533) 688 29 91<br>
+                    E-Posta: kopcahobievii@gmail.com
+                </p>
+                <div class="social-links">
+                    <a href="https://instagram.com/kopcahobievi" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/905336882991" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-map">
+                <h3>Konumumuz</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.0120001106147!2d29.094592000000006!3d41.134263999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cacb5f8fad1e63%3A0x368df094079f9ac!2sKop%C3%A7a%20Hobi%20Evi!5e0!3m2!1str!2str!4v1762130355999!5m2!1str!2str" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2025 Kopça Hobi Evi | Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. İP LİSTESİ
+        const ipListesi = [
+            { ad: "Angora Nako Modelleri", fiyat: "Bilgi için instagramdan ulaşınız", resim: "İp (1).jpeg" },
+            { ad: "Kağıt İpler", fiyat: "Bilgi için instagramdan ulaşınız", resim: "İp (2).jpeg" },
+            { ad: "Alize Velluto Modelleri", fiyat: "Bilgi için instagramdan ulaşınız", resim: "İp (3).jpeg" },
+            { ad: "Alize İp Modelleri", fiyat: "Bilgi için instagramdan ulaşınız", resim: "İp (4).jpeg" },
+            { ad: "Alize Puffy Modelleri", fiyat: "Bilgi için instagramdan ulaşınız", resim: "İp (5).jpeg" },
+            { ad: "Alize Puffy Modelleri", fiyat: "Bilgi için instagramdan ulaşınız", resim: "İp (6).jpeg" }
+        ];
+
+        // 2. LİSTEYİ EKRANA BASMA
+        function ipleriYukle() {
+            const container = document.getElementById('ipler-container');
+            const klasor = "kopcaresim/İp/";
+            const mesaj = "Alım için instagram üzerinden iletişime geçiniz veya dükkanımıza bekleriz.";
+
+            ipListesi.forEach(urun => {
+                const resimYolu = klasor + urun.resim;
+                const kart = `
+                    <div class="product-card">
+                        <img src="${resimYolu}" 
+                             alt="${urun.ad}" 
+                             class="gallery-image" 
+                             onerror="this.src='https://via.placeholder.com/300?text=Resim+Yok'"
+                             onclick="openModal('${resimYolu}', '${mesaj}')">
+                        <div class="product-details">
+                            <p class="product-description">${urun.ad}</p>
+                            <p class="product-price">${urun.fiyat}</p>
+                        </div>
+                    </div>`;
+                container.innerHTML += kart;
+            });
+        }
+
+        // Başlat
+        ipleriYukle();
+
+        // Modal Fonksiyonları
+        function openModal(imgSrc, captionText) {
+            document.getElementById("imageModal").style.display = "block";
+            document.getElementById("modalImage").src = imgSrc;
+            document.getElementById("caption").innerHTML = captionText;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModal();
+        });
+    </script>
+</body>
+</html>
