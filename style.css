@@ -1101,27 +1101,62 @@ background-color: #903c74;
 /* MODAL (LIGHTBOX) STİLİ */
 /* ========================================= */
 
+/* Modal Genel Arkaplanı */
 .modal {
-    display: none; /* Varsayılan olarak gizli */
-    position: fixed; 
-    z-index: 9999; 
+    display: none;
+    position: fixed;
+    z-index: 9999; /* Her şeyin en üstünde dursun */
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.9); /* Yarı saydam siyah arka plan */
-    animation: fadeIn 0.3s;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Arka planı koyulaştır */
+    display: flex; /* İçeriği hizalamak için flex kullanıyoruz */
+    align-items: center; /* Dikeyde tam merkez */
+    justify-content: center; /* Yatayda tam merkez */
+    flex-direction: column; /* Elemanları (resim ve yazı) alt alta dizer */
 }
 
+/* Modal İçindeki Resim */
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 900px;
-    max-height: 90vh;
-    border-radius: 8px;
-    animation: zoomIn 0.4s;
+    max-width: 90%;
+    max-height: 80vh; /* Ekran yüksekliğinin %80'ini geçmesin */
+    object-fit: contain; /* Resmin oranını bozmadan sığdırır */
+    border: 3px solid white;
+    border-radius: 5px;
+}
+
+/* Okların (Navigasyon) Pozisyonu */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Ekranın tam ortasında dikey hizalama */
+    transform: translateY(-50%); /* Kendi yüksekliklerini dengeleme */
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Kapatma Butonu */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* Kapatma Butonu */
@@ -1542,6 +1577,7 @@ background-color: #903c74;
         font-size: 0.8rem !important;
         color: #67234c;
     }
+
     /* FOOTER */
     .footer-content-wrapper {
         flex-direction: column;
@@ -1595,13 +1631,31 @@ background-color: #903c74;
         margin: 0 !important;
         box-sizing: border-box; /* Padding'in genişliğe dahil olmasını sağlar */
     }
+
     
-   
     /* ========================================= */
 /* MODAL (LIGHTBOX) OPTİMİZE EDİLDİ          */
 /* ========================================= */
 
 .modal {
+    display: none; /* JavaScript bunu 'flex' yapmalı */
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    
+    /* Burası en kritik kısım: */
+    display: flex; 
+    flex-direction: column; /* Elemanları (resim ve yazı) alt alta dizer */
+    align-items: center; /* Dikeyde tam merkez */
+    justify-content: center; /* Yatayda tam merkez */
+    padding: 20px;
+}
+
+/*.modal {
     display: none;
     position: fixed;
     z-index: 10000;
@@ -1610,20 +1664,32 @@ background-color: #903c74;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.95);
-    align-items: center; /* İçeriği dikeyde ortalar */
+    align-items: center; /* İçeriği dikeyde ortalar 
     justify-content: center;
     padding: 20px;
-}
+}*/
 
 .modal-content {
+    margin: auto; /* Tarayıcı boşlukları otomatik dağıtır */
+    max-width: 95%;
+    max-height: 75vh; /* Mobilde tepeden/aşağıdan pay bırakır */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+/*.modal-content {
     max-width: 90%;
     max-height: 80vh;
     width: auto;
     height: auto;
-    object-fit: contain; /* Resmin bozulmasını önler */
+    object-fit: contain; /* Resmin bozulmasını önler 
     border-radius: 4px;
     animation: zoomIn 0.3s ease;
-}
+}*/
 
 .close {
     position: absolute;
@@ -1642,6 +1708,9 @@ background-color: #903c74;
 
 
 }
+
+
+
 
 
 
