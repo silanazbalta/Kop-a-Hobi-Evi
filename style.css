@@ -1012,20 +1012,80 @@ background-color: #903c74;
 
 
     @media (max-width: 768px) {
-    .story-container {
+        .story-container {
+        display: flex;
+        flex-direction: column !important; /* Yan yana duruşu iptal et, alt alta getir */
+        padding: 10px !important;
+        gap: 20px; /* Aralarındaki mesafeyi aç */
+    }
+    /*.story-container {
         max-width: 100%;
         padding: 0 15px;
+    }*/
+.story-row-section {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        
     }
+    /* 2. Zag-layout (ters dizilim) olan kısımları da düzelt */
+    .story-row-section.zag-layout .story-container {
+        flex-direction: column !important; /* Videonun metnin altında kalmasını sağlar */
+    }
+
+    /* 3. Yazı Kartını Düzenle (Devasa görünmesini engeller) */
+    .story-text-card {
+        width: 100% !important; /* Ekranı tam kapla */
+        text-align: center;
+        margin: 0 !important;
+        padding: 15px 10px !important;
+        padding: 25px !important; /* İç boşluğu daralt */
+        min-height: auto !important; /* Sabit yükseklik varsa iptal et */
+        box-sizing: border-box; /* Padding genişliği bozmasın */
+    }/*
     .story-text-card {
         padding: 30px 20px;
-    }
+    }*/
+
+    /* 4. Resim ve Video Bloklarını Düzenle */
+    .story-media-block {
+        width: 100% !important;
+        height: auto !important; /* Mobilde çok yer kaplamasın */
+        min-height: 200px;
+        margin: 15px 0 !important;
+        display: block !important;
+    }/*
     .story-media-block {
         width: 100%;
+    }*/
+
+    .story-media-block img{
+        /* Resmin devasa görünmemesi için kısıtlama */
+    
+        width: 100% !important;
+        height: auto !important;
+        max-height: 350px; /* Resmi dikeyde sınırla */
+        object-fit: cover;
+        border-radius: 12px;
+    } 
+
+    /* Videonun normal boyuta gelmesi için özel ayar */
+    .story-media-block.video-frame {
+        height: auto !important;
+        aspect-ratio: 16 / 9; /* Videoyu sinematik formatta tutar */
     }
-    .story-media-block {
-        height: 300px;
+
+    .story-media-block video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Resmin yamulmasını engeller */
+        border-radius: 8px; /*Köşeleri hafif yuvarla */
     }
-}
+       .story-para {
+        margin-bottom: 4px !important; /* Paragraflar birbirine daha yakın olsun */
+                    /* Satır aralığını biraz daralt */
+    } 
+    
+    }
 
 @media (max-width: 768px) {
     .mosaic-grid.full-width-grid {
@@ -1435,33 +1495,53 @@ background-color: #903c74;
 
        
     /* ÜRÜNLER / ETKİNLİKLER GALERİSİ (Tek Sütun) */
-    
+
+
+    /* 1. Ürünlerin kapsayıcısını (grid) 2'li kolona ayarla */
     .gallery-grid {
         display: grid !important;
-        /* auto-fit yerine zorunlu 2 sütun (1fr 1fr) yapıyoruz */
-        grid-template-columns: repeat(3, 1fr) !important; /* 3 sütun yaptık */
-        gap: 30px !important; /* Mobilde boşlukları daralttık */
-        padding: 0 10 px !important;
-        margin: 20px;
+        grid-template-columns: repeat(2, 1fr) !important; /* Yan yana tam 2 adet */
+        gap: 30px !important; /* Ürünler arasındaki boşluk */
+        padding: 20px !important;
     }
-    product-card {
-        max-width: 100% !important; /* 280px sınırını mobilde kaldırıyoruz */
-        margin-bottom: 10px;
+    
+    /* 2. Kartların genişliğini ekranın yarısına uydur */
+    .product-card {
+        width: 100% !important;
+        margin: 0 !important;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-
+    
     .gallery-image {
         height: 120px !important; /* Yan yana sığması için yüksekliği düşürdük */
     }
+   
 
+    /* 3. Resimlerin boyutunu mobilde eşitle */
+    .product-card img {
+        height: 160px !important; /* Mobilde daha kibar bir yükseklik */
+        object-fit: cover;
+        width: 100%;
+    }
+
+    /* 4. Yazıların boyutunu küçült ki kutuya sığsın */
     .product-details {
-        padding: 8px; /* İç boşluğu küçülterek alan kazandık */
+        padding: 8px !important;
     }
 
     .product-description {
-        font-size: 0.8rem !important; /* Yazılar taşmasın */
-        min-height: 30px;
+        font-size: 0.9rem !important;
+        margin-bottom: 4px !important;
+        line-height: 1.2;
     }
 
+    .product-price {
+        font-size: 0.8rem !important;
+        color: #67234c;
+    }
     /* FOOTER */
     .footer-content-wrapper {
         flex-direction: column;
@@ -1562,6 +1642,7 @@ background-color: #903c74;
 
 
 }
+
 
 
 
