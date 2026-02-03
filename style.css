@@ -221,7 +221,26 @@ nav .dropdown-content a:hover {
     padding: 60px 5%;
 }
 
-.about video, 
+.about video {
+    width: 100%;
+    max-width: 400px;
+    /* Sabit height yerine aspect-ratio kullanmak en modern ve doğru çözümdür */
+    aspect-ratio: 3/ 4; /* Eğer video dik (reels tipi) ise 9/16, yatay ise 16/9 yapın */
+    height: auto; /* Sabit yüksekliği iptal et */
+    
+    /* object-fit: contain; videonun tamamını gösterir, kesmez */
+    /* object-fit: cover; ise alanı doldurur ama doğru oranda büyütür */
+    object-fit: cover;     
+    border-radius: 15px;
+    flex-shrink: 0;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Video tam ekran olduğunda (büyüdüğünde) oran bozulmaması için */
+.about video:fullscreen {
+    object-fit: contain;
+}
 .about img {
     width: 100%; /* Genişliği biraz daraltmak "zoom" hissini azaltır */
     max-width: 400px;
@@ -843,7 +862,29 @@ background-color: #903c74;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    height: 280px;
+    height: 250px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-media-block video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+/* 2. Tarayıcıda tam ekran (Fullscreen) olduğunda: Oranı korur (Contain) */
+/* Bu kod, kullanıcı videoyu büyüttüğünde otomatik devreye girer */
+.story-media-block video:fullscreen {
+    object-fit: contain;
+    background-color: #000; /* Kenarlarda boşluk kalırsa siyah olsun */
+}
+
+/* Safari ve eski tarayıcılar için (Webkit) */
+.story-media-block video:-webkit-full-screen {
+    object-fit: contain;
 }
 
 .story-media-block img {
@@ -1071,7 +1112,14 @@ background-color: #903c74;
     /* Videonun normal boyuta gelmesi için özel ayar */
     .story-media-block.video-frame {
         height: auto !important;
-        aspect-ratio: 16 / 9; /* Videoyu sinematik formatta tutar */
+        max-width: 320px;
+        margin: 0 auto;
+        aspect-ratio: 6/8; /* Videoyu sinematik formatta tutar */
+        background-color: #1a1a1a; /* Derin siyah zemin */
+    border-radius: 20px; /* Daha yuvarlak, modern köşeler */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Şık bir gölge */
+    border: 1px solid rgba(0,0,0,0.05); /* Çok hafif bir çerçeve çizgisi */
     }
 
     .story-media-block video {
@@ -1115,6 +1163,11 @@ background-color: #903c74;
     align-items: center; /* Dikeyde tam merkez */
     justify-content: center; /* Yatayda tam merkez */
     flex-direction: column; /* Elemanları (resim ve yazı) alt alta dizer */
+}
+
+/* Eğer yazı kutusu boşsa ekranda nokta gibi görünmesin */
+#caption:empty {
+    display: none;
 }
 
 /* Modal İçindeki Resim */
@@ -1513,8 +1566,9 @@ background-color: #903c74;
         padding: 20px !important;
         text-align: justify !important; /* İstediğin yaslama */
         text-justify: inter-word;
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.80);
         border-radius: 8px;
+        
     }
 
     /* KAHRAMAN BÖLÜMÜ (HERO) */
@@ -1708,10 +1762,6 @@ background-color: #903c74;
 
 
 }
-
-
-
-
 
 
 
